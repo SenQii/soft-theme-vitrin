@@ -1,10 +1,12 @@
-# CLAUDE.md
+# CLAUDE.md - Production Jinja2 Theme
 
-This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
+This file provides guidance to Claude Code (claude.ai/code) when working with the production Jinja2 theme.
+
+> **Note**: This is part of a dual-setup project. See the root `/zid-theme/CLAUDE.md` for the complete development workflow including the HTML prototype workspace.
 
 ## Project Overview
 
-This is a Jinja2-based e-commerce theme called "soft-theme-vitrin" for an Arabic/bilingual storefront platform. The theme supports RTL languages and includes comprehensive e-commerce functionality.
+This is the production Jinja2-based e-commerce theme called "soft-theme-vitrin" for the Zid platform. This theme supports RTL languages and includes comprehensive e-commerce functionality.
 
 ## Architecture
 

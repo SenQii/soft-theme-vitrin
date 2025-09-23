@@ -1,9 +1,11 @@
 {
   "name": "soft-theme-vitrin",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "Zid e-commerce theme with local development server",
+  "main": "server.py",
   "scripts": {
+    "dev": "python server.py",
+    "start": "python server.py",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -15,5 +17,7 @@
   "bugs": {
     "url": "https://github.com/zidsa/soft-theme-vitrin/issues"
   },
-  "homepage": "https://github.com/zidsa/soft-theme-vitrin#readme"
+  "homepage": "https://github.com/zidsa/soft-theme-vitrin#readme",
+  "devDependencies": {},
+  "dependencies": {}
 }

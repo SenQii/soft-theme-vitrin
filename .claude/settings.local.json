@@ -9,7 +9,8 @@
       "Bash(do echo \"=== $file ===\")",
       "Bash(python3:*)",
       "Bash(done)",
-      "Bash(for file in footer_schema.json header_schema.json layout_schema.json)"
+      "Bash(for file in footer_schema.json header_schema.json layout_schema.json)",
+      "WebFetch(domain:docs.zid.sa)"
     ],
     "deny": []
   }
