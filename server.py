@@ -201,6 +201,7 @@ SAMPLE_DATA = {
                 'name': 'فستان أنيق',
                 'description': 'فستان أنيق ومريح للمناسبات الخاصة',
                 'html_url': 'http://localhost:8000/product/1',
+                'category_id': '1',  # Fashion category
                 'main_image': {
                     'image': {
                         'small': '/assets/woman.png',
@@ -226,16 +227,54 @@ SAMPLE_DATA = {
             },
             {
                 'id': '2',
+                'slug': 'luxury-perfume',
                 'name': 'عطر فاخر',
+                'description': 'عطر فاخر برائحة مميزة',
+                'html_url': 'http://localhost:8000/product/2',
+                'category_id': '2',  # Perfume category
                 'main_image': {'image': {'small': '/assets/perfoum.png', 'medium': '/assets/perfoum.png', 'full_size': '/assets/perfoum.png'}},
+                'images': [{'image': {'small': '/assets/perfoum.png', 'medium': '/assets/perfoum.png', 'full_size': '/assets/perfoum.png'}, 'alt_text': 'عطر فاخر'}],
                 'formatted_price': '450.00 ر.س',
+                'formatted_sale_price': None,
                 'in_stock': True,
                 'quantity': 25,
                 'is_infinite': False,
                 'rating': {'average': 5.0, 'total_count': 15}
+            },
+            {
+                'id': '3',
+                'slug': 'casual-shirt',
+                'name': 'قميص كاجوال',
+                'description': 'قميص كاجوال مريح للاستخدام اليومي',
+                'html_url': 'http://localhost:8000/product/3',
+                'category_id': '1',  # Fashion category
+                'main_image': {'image': {'small': '/assets/woman.png', 'medium': '/assets/woman.png', 'full_size': '/assets/woman.png'}},
+                'images': [{'image': {'small': '/assets/woman.png', 'medium': '/assets/woman.png', 'full_size': '/assets/woman.png'}, 'alt_text': 'قميص كاجوال'}],
+                'formatted_price': '149.00 ر.س',
+                'formatted_sale_price': None,
+                'in_stock': True,
+                'quantity': 30,
+                'is_infinite': False,
+                'rating': {'average': 4.2, 'total_count': 18}
+            },
+            {
+                'id': '4',
+                'slug': 'luxury-cologne',
+                'name': 'كولونيا فاخرة',
+                'description': 'كولونيا فاخرة برائحة منعشة',
+                'html_url': 'http://localhost:8000/product/4',
+                'category_id': '2',  # Perfume category
+                'main_image': {'image': {'small': '/assets/perfoum.png', 'medium': '/assets/perfoum.png', 'full_size': '/assets/perfoum.png'}},
+                'images': [{'image': {'small': '/assets/perfoum.png', 'medium': '/assets/perfoum.png', 'full_size': '/assets/perfoum.png'}, 'alt_text': 'كولونيا فاخرة'}],
+                'formatted_price': '320.00 ر.س',
+                'formatted_sale_price': None,
+                'in_stock': True,
+                'quantity': 15,
+                'is_infinite': False,
+                'rating': {'average': 4.8, 'total_count': 12}
             }
         ],
-        'count': 2
+        'count': 4
     },
     'categories': [
         {
@@ -261,6 +300,7 @@ SAMPLE_DATA = {
     ],
     'cart': {
         'products_count': 0,
+        'products': [],  # Empty cart for demo
         'totals': [
             {'code': 'subtotal', 'title': 'المجموع الفرعي', 'value_string': '0.00 ر.س'},
             {'code': 'total', 'title': 'المجموع', 'value_string': '0.00 ر.س'}
@@ -302,6 +342,7 @@ SAMPLE_DATA = {
                     'name': 'فستان أنيق',
                     'description': 'فستان أنيق ومريح للمناسبات الخاصة',
                     'html_url': 'http://localhost:8000/product/1',
+                    'category_id': '1',
                     'main_image': {
                         'image': {
                             'small': '/assets/woman.png',
@@ -312,6 +353,8 @@ SAMPLE_DATA = {
                     },
                     'formatted_price': '299.00 ر.س',
                     'in_stock': True,
+                    'quantity': 50,
+                    'is_infinite': False,
                     'rating': {'average': 4.5, 'total_count': 25}
                 },
                 {
@@ -320,6 +363,7 @@ SAMPLE_DATA = {
                     'name': 'عطر فاخر',
                     'description': 'عطر فاخر برائحة مميزة',
                     'html_url': 'http://localhost:8000/product/2',
+                    'category_id': '2',
                     'main_image': {
                         'image': {
                             'small': '/assets/perfoum.png',
@@ -330,7 +374,30 @@ SAMPLE_DATA = {
                     },
                     'formatted_price': '450.00 ر.س',
                     'in_stock': True,
+                    'quantity': 25,
+                    'is_infinite': False,
                     'rating': {'average': 5.0, 'total_count': 15}
+                },
+                {
+                    'id': '3',
+                    'slug': 'casual-shirt',
+                    'name': 'قميص كاجوال',
+                    'description': 'قميص كاجوال مريح للاستخدام اليومي',
+                    'html_url': 'http://localhost:8000/product/3',
+                    'category_id': '1',
+                    'main_image': {
+                        'image': {
+                            'small': '/assets/woman.png',
+                            'medium': '/assets/woman.png',
+                            'full_size': '/assets/woman.png'
+                        },
+                        'alt_text': 'قميص كاجوال'
+                    },
+                    'formatted_price': '149.00 ر.س',
+                    'in_stock': True,
+                    'quantity': 30,
+                    'is_infinite': False,
+                    'rating': {'average': 4.2, 'total_count': 18}
                 }
             ],
             'url': '/products'
@@ -372,14 +439,17 @@ def category(category_id):
     data = SAMPLE_DATA.copy()
     data['category'] = category_data
     
+    # Filter products by category
+    category_products = [p for p in SAMPLE_DATA['products']['results'] if p.get('category_id') == str(category_id)]
+    
     # Create products data with pagination info for category page
     data['products'] = {
-        'results': SAMPLE_DATA['products']['results'],
-        'count': SAMPLE_DATA['products']['count'],
+        'results': category_products,
+        'count': len(category_products),
         'page': 1,
         'pages_count': 1,
         'filters': [],
-        'data': SAMPLE_DATA['products']['results']
+        'data': category_products
     }
     return render_template('templates/category.jinja', **data)
 
